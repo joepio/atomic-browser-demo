@@ -9,9 +9,8 @@ export function ResourcePage({
 }: ResourcePageProps) {
   const resource = useResource(url)
   const title = useTitle(resource)
-  const store = useStore()
   const [description, setDescription] = useString(resource, properties.description, {
-    commit: false
+    commit: true
   })
 
   if (resource.error) {
@@ -22,11 +21,15 @@ export function ResourcePage({
     return <div>Loading...</div>
   }
 
+  const propVals = [...resource.getPropVals()]
+
   return (
     <div>
       <h1>{title}</h1>
       <textarea value={description || ""} onChange={e => setDescription(e.target.value)} />
-      <button onClick={() => resource.save(store)}>save</button>
+      {propVals.map(([property, value]) => (
+        <div key={property}>{value?.toString()}</div>
+      ))}
     </div>
   )
 }
