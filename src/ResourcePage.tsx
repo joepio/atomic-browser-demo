@@ -1,4 +1,5 @@
 import { properties, useResource, useStore, useString, useTitle } from "@tomic/react";
+import PropVal from "./PropVal";
 
 interface ResourcePageProps {
   url: string,
@@ -28,7 +29,7 @@ export function ResourcePage({
       <h1>{title}</h1>
       <textarea value={description || ""} onChange={e => setDescription(e.target.value)} />
       {propVals.map(([property, value]) => (
-        <div key={property}>{value?.toString()}</div>
+        <PropVal propertyUrl={property} value={value} />
       ))}
     </div>
   )
