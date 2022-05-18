@@ -1,10 +1,10 @@
 import { properties, useResource, useString, useTitle } from "@tomic/react";
 
-interface ResourcePageProps{
+interface ResourcePageProps {
   url: string,
 }
 
-export function ResourcePage ({
+export function ResourcePage({
   url
 }: ResourcePageProps) {
   const resource = useResource(url)
@@ -14,7 +14,7 @@ export function ResourcePage ({
   })
 
   return <div>Resource: {url}
-  <h1>{title}</h1>
-  <textarea value={description || ""} onChange={e => setDescription(e.target.value)} />
+    <h1>{title}</h1>
+    <textarea value={description || ""} onChange={e => setDescription(e.target.value)} />
   </div>
 }
