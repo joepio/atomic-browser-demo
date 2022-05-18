@@ -1,3 +1,4 @@
+import { useResource, useTitle } from "@tomic/react";
 
 interface ResourcePageProps{
   url: string,
@@ -6,6 +7,10 @@ interface ResourcePageProps{
 export function ResourcePage ({
   url
 }: ResourcePageProps) {
+  const resource = useResource(url)
+  const title = useTitle(resource)
 
-  return <div>Resource</div>
+  return <div>Resource: {url}
+  <h1>{title}</h1>
+  </div>
 }
