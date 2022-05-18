@@ -9,10 +9,12 @@ export function ResourcePage ({
 }: ResourcePageProps) {
   const resource = useResource(url)
   const title = useTitle(resource)
-  const [description] = useString(resource, properties.description)
+  const [description, setDescription] = useString(resource, properties.description, {
+    commit: true
+  })
 
   return <div>Resource: {url}
   <h1>{title}</h1>
-  <p>{description}</p>
+  <textarea value={description || ""} onChange={e => setDescription(e.target.value)} />
   </div>
 }
